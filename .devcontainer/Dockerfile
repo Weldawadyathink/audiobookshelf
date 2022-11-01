@@ -17,6 +17,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 # RUN su node -c "npm install -g <your-package-list-here>"
 
 # Move tone executable to appropriate directory
-FROM sandreas/tone:v0.1.1 AS tone
+FROM sandreas/tone:v0.1.2 AS tone
 FROM base
 COPY --from=tone /usr/local/bin/tone /usr/local/bin/
