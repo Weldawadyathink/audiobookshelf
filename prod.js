@@ -1,3 +1,6 @@
+// Register ts-node to enable TypeScript support
+require('ts-node/register')
+
 const optionDefinitions = [
   { name: 'config', alias: 'c', type: String },
   { name: 'metadata', alias: 'm', type: String },

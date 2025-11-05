@@ -1,0 +1,10 @@
+{
+  "watch": ["server"],
+  "ext": "js,ts,json",
+  "ignore": ["server/**/*.test.ts", "server/**/*.test.js", "node_modules", "client"],
+  "exec": "node -r ts-node/register index.js --dev",
+  "env": {
+    "NODE_ENV": "development"
+  }
+}
+

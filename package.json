@@ -5,7 +5,7 @@
   "description": "Self-hosted audiobook and podcast server",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch server index.js -- --dev",
+    "dev": "nodemon",
     "start": "node index.js",
     "start-dev": "node index.js --prod-with-dev-env",
     "client": "cd client && npm ci && npm run generate",
@@ -29,7 +29,8 @@
     ],
     "scripts": [
       "index.js",
-      "server/**/*.js"
+      "server/**/*.js",
+      "server/**/*.ts"
     ]
   },
   "mocha": {
@@ -57,13 +58,16 @@
     "socket.io": "^4.5.4",
     "sqlite3": "^5.1.7",
     "ssrf-req-filter": "^1.1.0",
+    "ts-node": "^10.9.2",
     "xml2js": "^0.5.0"
   },
   "devDependencies": {
+    "@types/node": "^20.0.0",
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
     "nodemon": "^2.0.20",
     "nyc": "^15.1.0",
-    "sinon": "^17.0.1"
+    "sinon": "^17.0.1",
+    "typescript": "^5.3.3"
   }
 }
