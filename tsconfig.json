@@ -11,10 +11,12 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
+    "moduleDetection": "force",
     "allowJs": true,
     "checkJs": false,
     "noEmit": true,
-    "types": ["node"]
+    "types": ["node"],
+    "noImplicitAny": true
   },
   "include": [
     "server/**/*",

@@ -24,6 +24,7 @@ const SocketAuthority = require('./SocketAuthority')
 const ApiRouter = require('./routers/ApiRouter')
 const HlsRouter = require('./routers/HlsRouter')
 const PublicRouter = require('./routers/PublicRouter')
+const KoboRouter = require('./routers/KoboRouter')
 
 const LogManager = require('./managers/LogManager')
 const EmailManager = require('./managers/EmailManager')
@@ -113,6 +114,7 @@ class Server {
     this.apiRouter = new ApiRouter(this)
     this.hlsRouter = new HlsRouter(this.auth, this.playbackSessionManager)
     this.publicRouter = new PublicRouter(this.playbackSessionManager)
+    this.koboRouter = new KoboRouter(this)
 
     Logger.logManager = new LogManager()
 
@@ -318,6 +320,7 @@ class Server {
     router.use('/api', this.auth.ifAuthNeeded(this.authMiddleware.bind(this)), this.apiRouter.router)
     router.use('/hls', this.hlsRouter.router)
     router.use('/public', this.publicRouter.router)
+    router.use('/kobo', this.koboRouter.router)
 
     // Static folder
     router.use(express.static(Path.join(global.appRoot, 'static')))
