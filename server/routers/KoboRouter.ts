@@ -29,20 +29,22 @@ class KoboRouter {
   }
 
   init() {
+    this.router.all('*', (req: KoboRequest, res: Response, next: NextFunction) => {
+      Logger.debug(`[KoboRouter] Handling request
+        ${req.method}: ${req.path}
+        body: ${JSON.stringify(req.body)}
+        headers: ${JSON.stringify(req.headers)}
+        query: ${JSON.stringify(req.query)}
+        params: ${JSON.stringify(req.params)}
+      `)
+      next()
+    })
+
     // Device authentication middleware for ABS auth
     this.router.param('authToken', KoboAuthManager.validateABSAuthToken.bind(this))
 
     // Device authentication endpoint for kobo auth
     this.router.post('/:authToken/v1/auth/device', KoboAuthManager.handleKoboAuth.bind(this))
-
-    this.router.all('*', (req: KoboRequest, res: Response, next: NextFunction) => {
-      Logger.debug(`[KoboRouter] Handling request ${req.method}: ${req.path}`)
-      Logger.debug(`[KoboRouter] Request body: ${JSON.stringify(req.body)}`)
-      Logger.debug(`[KoboRouter] Request headers: ${JSON.stringify(req.headers)}`)
-      Logger.debug(`[KoboRouter] Request query: ${JSON.stringify(req.query)}`)
-      Logger.debug(`[KoboRouter] Request params: ${JSON.stringify(req.params)}`)
-      next()
-    })
 
     // Fallback redirect for all unknown routes
     this.router.all('*', KoboController.handleFallbackRedirect.bind(this))
