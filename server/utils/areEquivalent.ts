@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * https://gist.github.com/DLiblik/96801665f9b6c935f12c1071d37eae95
  Compares two items (values or references) for nested equivalency, meaning that
@@ -18,10 +17,10 @@
  @param value2 Other item to compare
  @param stack Used internally to track circular refs - don't set it
  */
-module.exports = function areEquivalent(value1, value2, numToString = false, stack = []) {
+function areEquivalent(value1: unknown, value2: unknown, numToString = false, stack: unknown[] = []): boolean {
   if (numToString) {
-    if (value1 !== null && !isNaN(value1)) value1 = String(value1)
-    if (value2 !== null && !isNaN(value2)) value2 = String(value2)
+    if (value1 !== null && !isNaN(value1 as number)) value1 = String(value1)
+    if (value2 !== null && !isNaN(value2 as number)) value2 = String(value2)
   }
 
   // Numbers, strings, null, undefined, symbols, functions, booleans.
@@ -49,7 +48,7 @@ module.exports = function areEquivalent(value1, value2, numToString = false, sta
   // (only way they can still be equivalent but not equal)
   if (type1 === 'number') {
     // Failed initial equals test, but could still both be NaN
-    return (isNaN(value1) && isNaN(value2));
+    return isNaN(value1 as number) && isNaN(value2 as number)
   }
 
   // Special case for function: check for toString() equivalence
@@ -57,13 +56,12 @@ module.exports = function areEquivalent(value1, value2, numToString = false, sta
     // Failed initial equals test, but could still have equivalent
     // implementations - note, will match on functions that have same name
     // and are native code: `function abc() { [native code] }`
-    return value1.toString() === value2.toString()
+    return (value1 as Function).toString() === (value2 as Function).toString()
   }
 
   // For these types, cannot still be equal at this point, so fast-fail
   if (type1 === 'bigint' || type1 === 'boolean' ||
-    type1 === 'function' || type1 === 'string' ||
-    type1 === 'symbol') {
+    type1 === 'string' || type1 === 'symbol') {
     // console.log('no match for values', value1, value2)
     return false
   }
@@ -85,7 +83,7 @@ module.exports = function areEquivalent(value1, value2, numToString = false, sta
   // since value1 being un-circular means value2 will either be equal (and not
   // circular too) or unequal whether circular or not.
   if (stack.includes(value1)) {
-    throw new Error(`areEquivalent value1 is circular`);
+    throw new Error(`areEquivalent value1 is circular`)
   }
 
   // breadcrumb
@@ -114,8 +112,8 @@ module.exports = function areEquivalent(value1, value2, numToString = false, sta
   // Final case: object
 
   // get both key lists and check length
-  const keys1 = Object.keys(value1)
-  const keys2 = Object.keys(value2)
+  const keys1 = Object.keys(value1 as object)
+  const keys2 = Object.keys(value2 as object)
   const numKeys = keys1.length
 
   if (keys2.length !== numKeys) {
@@ -142,17 +140,21 @@ module.exports = function areEquivalent(value1, value2, numToString = false, sta
   }
 
   // Ensure perfect match across all values
+  const v1Obj = value1 as Record<string, unknown>
+  const v2Obj = value2 as Record<string, unknown>
   for (let i = 0; i < numKeys; i++) {
-    if (!areEquivalent(value1[keys1[i]], value2[keys1[i]], numToString, stack)) {
+    if (!areEquivalent(v1Obj[keys1[i]], v2Obj[keys1[i]], numToString, stack)) {
       // console.log('2 subobjects not equiv', keys1[i], value1[keys1[i]], value2[keys1[i]])
       return false
     }
   }
 
   // back up
-  stack.pop();
+  stack.pop()
 
   // Walk the same, talk the same - matching ducks. Quack.
   // 🦆🦆
-  return true;
+  return true
 }
+
+export = areEquivalent

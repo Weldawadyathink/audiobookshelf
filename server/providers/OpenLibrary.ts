@@ -1,0 +1,135 @@
+import axios from 'axios'
+
+interface WorksData {
+  covers?: number[]
+  description?: string | { value?: string }
+  first_publish_date?: string
+}
+
+interface WorksResult {
+  id: string | undefined
+  key: string
+  covers: string[]
+  first_publish_date: string | undefined
+  description: string | null
+}
+
+interface WorksError {
+  errorMsg?: string
+  errorCode: number
+}
+
+interface SearchDoc {
+  title: string
+  author_name?: string[]
+  key: string
+  cover_edition_key?: string
+  first_publish_year?: number
+}
+
+interface SearchResponse {
+  docs: SearchDoc[]
+}
+
+interface CleanedSearchResult extends WorksResult {
+  title: string
+  author: string | null
+  publishedYear: string | null
+  edition: string | undefined
+  cover: string | null
+}
+
+class OpenLibrary {
+  readonly #responseTimeout = 10000
+  baseUrl: string
+
+  constructor() {
+    this.baseUrl = 'https://openlibrary.org'
+  }
+
+  get(uri: string, timeout: number = this.#responseTimeout): Promise<unknown> {
+    if (!timeout || isNaN(timeout)) timeout = this.#responseTimeout
+    return axios
+      .get(`${this.baseUrl}/${uri}`, { timeout })
+      .then((res) => res.data)
+      .catch((error: Error) => {
+        console.error('Failed', error.message)
+        return null
+      })
+  }
+
+  async isbnLookup(isbn: string): Promise<WorksError | unknown> {
+    const lookupData = await this.get(`/isbn/${isbn}`)
+    if (!lookupData) {
+      return { errorCode: 404 }
+    }
+    return lookupData
+  }
+
+  async getWorksData(worksKey: string): Promise<WorksResult | WorksError> {
+    const worksData = (await this.get(`${worksKey}.json`)) as WorksData | null
+    if (!worksData) {
+      return { errorMsg: 'Works Data Request failed', errorCode: 500 }
+    }
+    if (!worksData.covers) worksData.covers = []
+    const coverImages = worksData.covers.filter((c) => c > 0).map((c) => `https://covers.openlibrary.org/b/id/${c}-L.jpg`)
+    let description: string | null = null
+    if (worksData.description) {
+      if (typeof worksData.description === 'string') {
+        description = worksData.description
+      } else {
+        description = worksData.description.value || null
+      }
+    }
+    return {
+      id: worksKey.split('/').pop(),
+      key: worksKey,
+      covers: coverImages,
+      first_publish_date: worksData.first_publish_date,
+      description
+    }
+  }
+
+  parsePublishYear(doc: SearchDoc, worksData: WorksResult | WorksError): string | null {
+    if (doc.first_publish_year && !isNaN(doc.first_publish_year)) return String(doc.first_publish_year)
+    if ('first_publish_date' in worksData && worksData.first_publish_date) {
+      const year = worksData.first_publish_date.split('-')[0]
+      if (!isNaN(Number(year))) return String(year)
+    }
+    return null
+  }
+
+  async cleanSearchDoc(doc: SearchDoc): Promise<CleanedSearchResult> {
+    const worksData = await this.getWorksData(doc.key)
+    return {
+      title: doc.title,
+      author: doc.author_name ? doc.author_name.join(', ') : null,
+      publishedYear: this.parsePublishYear(doc, worksData),
+      edition: doc.cover_edition_key,
+      cover: doc.cover_edition_key ? `https://covers.openlibrary.org/b/OLID/${doc.cover_edition_key}-L.jpg` : null,
+      ...(worksData as WorksResult)
+    }
+  }
+
+  async search(query: Record<string, string>): Promise<WorksError | CleanedSearchResult[]> {
+    const queryString = Object.keys(query)
+      .map((key) => key + '=' + query[key])
+      .join('&')
+    const lookupData = (await this.get(`/search.json?${queryString}`)) as SearchResponse | null
+    if (!lookupData) {
+      return { errorCode: 404 }
+    }
+    return Promise.all(lookupData.docs.map((d) => this.cleanSearchDoc(d)))
+  }
+
+  async searchTitle(title: string, timeout: number = this.#responseTimeout): Promise<WorksError | CleanedSearchResult[]> {
+    const encodedTitle = encodeURIComponent(title)
+    const lookupData = (await this.get(`/search.json?title=${encodedTitle}`, timeout)) as SearchResponse | null
+    if (!lookupData) {
+      return { errorCode: 404 }
+    }
+    return Promise.all(lookupData.docs.map((d) => this.cleanSearchDoc(d)))
+  }
+}
+
+export = OpenLibrary
