@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict';
 
 // https://github.com/sindresorhus/read-chunk

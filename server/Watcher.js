@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const EventEmitter = require('events')
 const Watcher = require('./libs/watcher/watcher')

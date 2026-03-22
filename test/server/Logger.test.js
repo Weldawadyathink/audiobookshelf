@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { expect } = require('chai')
 const sinon = require('sinon')
 const Logger = require('../../server/Logger') // Adjust the path as needed

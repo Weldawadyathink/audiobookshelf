@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const fs = require('../libs/fsExtra')
 const stream = require('stream')

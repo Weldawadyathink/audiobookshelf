@@ -1,3 +1,4 @@
+// @ts-nocheck
 const validatePattern = require('./pattern-validation');
 const convertExpression = require('./convert-expression');
 

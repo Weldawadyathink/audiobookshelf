@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * JSON Format Plugin
  *

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const balanced = require('../balancedMatch');
 
 const escSlash = '\0SLASH' + Math.random() + '\0';

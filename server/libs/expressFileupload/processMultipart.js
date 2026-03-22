@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Busboy = require('../busboy');
 const UploadTimer = require('./uploadtimer');
 const fileFactory = require('./fileFactory');

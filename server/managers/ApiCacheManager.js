@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { LRUCache } = require('lru-cache')
 const Logger = require('../Logger')
 const Database = require('../Database')

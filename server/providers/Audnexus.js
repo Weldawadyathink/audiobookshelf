@@ -1,3 +1,4 @@
+// @ts-nocheck
 const axios = require('axios').default
 const Throttle = require('p-throttle')
 const Logger = require('../Logger')

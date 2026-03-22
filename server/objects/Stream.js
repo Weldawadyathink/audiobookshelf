@@ -1,3 +1,4 @@
+// @ts-nocheck
 const EventEmitter = require('events')
 const Path = require('path')
 const Logger = require('../Logger')

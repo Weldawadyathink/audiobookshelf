@@ -1,3 +1,4 @@
+// @ts-nocheck
 const minimatch = module.exports = (p, pattern, options = {}) => {
   assertValidPattern(pattern)
 

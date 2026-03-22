@@ -1,3 +1,4 @@
+// @ts-nocheck
 var JsonWebTokenError = require('./JsonWebTokenError');
 
 var TokenExpiredError = function (message, expiredAt) {

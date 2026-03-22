@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes, Model, Op } = require('sequelize')
 const jwt = require('jsonwebtoken')
 const { LRUCache } = require('lru-cache')

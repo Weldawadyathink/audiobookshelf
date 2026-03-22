@@ -1,3 +1,4 @@
+// @ts-nocheck
 const fs = require('../libs/fsExtra')
 const Path = require('path')
 const Logger = require('../Logger')

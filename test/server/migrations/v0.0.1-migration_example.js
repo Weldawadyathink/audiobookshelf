@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes } = require('sequelize')
 
 /**

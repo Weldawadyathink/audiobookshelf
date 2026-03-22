@@ -1,3 +1,4 @@
+// @ts-nocheck
 const util = require('util')
 const { Sequelize } = require('sequelize')
 

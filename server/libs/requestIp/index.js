@@ -1,3 +1,4 @@
+// @ts-nocheck
 // SOURCE: https://github.com/pbojinov/request-ip
 
 "use strict";

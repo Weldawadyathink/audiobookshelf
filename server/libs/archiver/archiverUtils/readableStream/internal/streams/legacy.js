@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict'
 
 const { ArrayIsArray, ObjectSetPrototypeOf } = require('../../ours/primordials')

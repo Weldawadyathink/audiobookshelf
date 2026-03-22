@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * @typedef MigrationContext
  * @property {import('sequelize').QueryInterface} queryInterface - a suquelize QueryInterface object.

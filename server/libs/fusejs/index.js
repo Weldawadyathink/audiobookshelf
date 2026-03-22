@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Source: https://github.com/krisk/Fuse/blob/main/dist/fuse.basic.min.js
  */

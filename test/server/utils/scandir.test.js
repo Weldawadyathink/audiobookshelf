@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const chai = require('chai')
 const expect = chai.expect

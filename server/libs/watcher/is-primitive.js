@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*!
  * is-primitive <https://github.com/jonschlinkert/is-primitive>
  *

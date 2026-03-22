@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const { filePathToPOSIX } = require('./fileUtils')
 const globals = require('./globals')

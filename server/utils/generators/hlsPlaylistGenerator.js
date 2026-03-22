@@ -1,3 +1,4 @@
+// @ts-nocheck
 const fs = require('../../libs/fsExtra')
 
 function getPlaylistStr(segmentName, duration, segmentLength, hlsSegmentType) {

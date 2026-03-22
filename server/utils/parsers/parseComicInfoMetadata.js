@@ -1,3 +1,4 @@
+// @ts-nocheck
 
 /**
  * TODO: Add more fields

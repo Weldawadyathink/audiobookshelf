@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /Users/Spenser/Programming/audiobookshelf/server -name \"*.js\" -exec wc -l {} +)",
+      "Bash(wc -l /Users/Spenser/Programming/audiobookshelf/server/controllers/*.js)",
+      "Bash(wc -l /Users/Spenser/Programming/audiobookshelf/server/models/*.js)",
+      "Bash(wc -l /Users/Spenser/Programming/audiobookshelf/server/scanner/*.js)",
+      "Bash(find /Users/Spenser/Programming/audiobookshelf/server/objects -name \"*.js\" -exec wc -l {} +)",
+      "Bash(wc:*)",
+      "Bash(npm run:*)",
+      "Bash(npm test:*)"
+    ]
+  }
+}

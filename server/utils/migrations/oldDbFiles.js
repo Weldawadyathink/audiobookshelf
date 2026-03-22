@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { once } = require('events')
 const { createInterface } = require('readline')
 const Path = require('path')

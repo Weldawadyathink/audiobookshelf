@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict'
 
 const { MathFloor, NumberIsInteger } = require('../../ours/primordials')

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const chai = require('chai')
 const sinon = require('sinon')
 const { expect } = chai

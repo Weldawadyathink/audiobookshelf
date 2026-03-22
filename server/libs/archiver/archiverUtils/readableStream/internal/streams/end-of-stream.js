@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict'

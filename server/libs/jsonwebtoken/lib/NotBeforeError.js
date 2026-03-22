@@ -1,3 +1,4 @@
+// @ts-nocheck
 var JsonWebTokenError = require('./JsonWebTokenError');
 
 var NotBeforeError = function (message, date) {

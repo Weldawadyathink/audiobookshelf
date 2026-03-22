@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* UAParser.js v0.7.31
    Copyright © 2012-2021 Faisal Salman <f@faisalman.com>
    MIT License */

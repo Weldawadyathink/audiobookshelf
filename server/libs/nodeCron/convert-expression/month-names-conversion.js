@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict';
 module.exports = (() => {
     const months = ['january','february','march','april','may','june','july',

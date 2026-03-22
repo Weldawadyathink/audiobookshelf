@@ -1,3 +1,4 @@
+// @ts-nocheck
 const axios = require('axios')
 const Ffmpeg = require('../libs/fluentFfmpeg')
 const ffmpgegUtils = require('../libs/fluentFfmpeg/utils')

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { xmlToJSON } = require('../index')
 const htmlSanitizer = require('../htmlSanitizer')
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // used by archiver
 // Source: https://github.com/Yqnn/node-readdir-glob

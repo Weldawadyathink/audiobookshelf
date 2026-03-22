@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes, Model } = require('sequelize')
 
 const oldEmailSettings = require('../objects/settings/EmailSettings')

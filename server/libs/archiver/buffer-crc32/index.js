@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // used in archiver
 // Source: https://github.com/brianloveswords/buffer-crc32

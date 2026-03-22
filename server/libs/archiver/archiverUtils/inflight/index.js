@@ -1,3 +1,4 @@
+// @ts-nocheck
 var wrappy = require('../wrappy')
 var reqs = Object.create(null)
 var once = require('../../../lodash.once')

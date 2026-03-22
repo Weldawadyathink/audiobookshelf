@@ -1,3 +1,4 @@
+// @ts-nocheck
 const uuidv4 = require('uuid').v4
 const Path = require('path')
 const serverVersion = require('../../package.json').version

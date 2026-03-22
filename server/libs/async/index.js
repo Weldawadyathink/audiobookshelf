@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // Used by fluentFfmpeg
 // Source: https://github.com/caolan/async

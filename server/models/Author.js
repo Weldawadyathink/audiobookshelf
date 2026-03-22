@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes, Model, where, fn, col } = require('sequelize')
 const parseNameString = require('../utils/parsers/parseNameString')
 

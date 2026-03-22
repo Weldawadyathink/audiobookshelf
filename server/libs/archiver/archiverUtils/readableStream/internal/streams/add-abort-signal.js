@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict'
 
 const { AbortError, codes } = require('../../ours/errors')

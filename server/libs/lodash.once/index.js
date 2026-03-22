@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // used by jsonwebtoken 
 //

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const os = require('os')
 const unrar = require('node-unrar-js')

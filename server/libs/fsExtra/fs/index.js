@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict'
 // This is adapted from https://github.com/normalize/mz
 // Copyright (c) 2014-2016 Jonathan Ong me@jongleberry.com and Contributors

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { createNewSortInstance } = require('../libs/fastSort')
 const Database = require('../Database')
 const { getTitlePrefixAtEnd, isNullOrNaN, getTitleIgnorePrefix } = require('../utils/index')

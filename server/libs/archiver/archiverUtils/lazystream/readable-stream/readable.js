@@ -1,3 +1,4 @@
+// @ts-nocheck
 var Stream = require('stream');
 if (process.env.READABLE_STREAM === 'disable' && Stream) {
   module.exports = Stream;

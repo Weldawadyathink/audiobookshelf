@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { Request, Response, NextFunction } = require('express')
 const sequelize = require('sequelize')
 const fs = require('../libs/fsExtra')

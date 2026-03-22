@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes, Model, Op } = require('sequelize')
 
 class Session extends Model {

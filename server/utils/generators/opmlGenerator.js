@@ -1,3 +1,4 @@
+// @ts-nocheck
 const xml = require('../../libs/xml')
 const escapeForXML = require('../../libs/xml/escapeForXML')
 

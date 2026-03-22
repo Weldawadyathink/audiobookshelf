@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use strict";
 /* IMPORT */
 const fs = require("fs");

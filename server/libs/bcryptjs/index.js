@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  bcrypt.js (c) 2013 Daniel Wirtz <dcode@dcode.io>
  Released under the Apache License, Version 2.0

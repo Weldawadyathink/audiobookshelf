@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const SocketAuthority = require('../SocketAuthority')
 const Logger = require('../Logger')

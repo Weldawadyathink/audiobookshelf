@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Database = require('../Database')
 const Logger = require('../Logger')
 const SocketAuthority = require('../SocketAuthority')

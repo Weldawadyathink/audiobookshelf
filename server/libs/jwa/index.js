@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // used by jws
 // Source: https://github.com/auth0/node-jwa

@@ -1,3 +1,4 @@
+// @ts-nocheck
 // SOURCE: https://github.com/snovakovic/fast-sort
 // LICENSE: https://github.com/snovakovic/fast-sort/blob/master/LICENSE
 

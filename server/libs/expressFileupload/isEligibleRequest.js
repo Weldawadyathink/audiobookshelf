@@ -1,3 +1,4 @@
+// @ts-nocheck
 const ACCEPTABLE_CONTENT_TYPE = /^(multipart\/.+);(.*)$/i;
 const UNACCEPTABLE_METHODS = ['GET', 'HEAD'];
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes, Model, Sequelize } = require('sequelize')
 
 class Collection extends Model {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const ms = require('ms')
 
 module.exports = function (time, iat) {

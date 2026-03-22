@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use strict";
 /* STRING INDEXES */
 function indexes(str, substr) {

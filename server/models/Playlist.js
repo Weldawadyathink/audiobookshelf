@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes, Model, Op } = require('sequelize')
 const Logger = require('../Logger')
 const SocketAuthority = require('../SocketAuthority')

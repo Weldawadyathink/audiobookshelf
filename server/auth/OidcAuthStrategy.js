@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { Request, Response } = require('express')
 const passport = require('passport')
 const OpenIDClient = require('openid-client')

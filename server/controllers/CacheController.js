@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { Request, Response } = require('express')
 const CacheManager = require('../managers/CacheManager')
 

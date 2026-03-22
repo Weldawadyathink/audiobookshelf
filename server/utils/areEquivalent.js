@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * https://gist.github.com/DLiblik/96801665f9b6c935f12c1071d37eae95
  Compares two items (values or references) for nested equivalency, meaning that

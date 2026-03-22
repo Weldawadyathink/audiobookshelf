@@ -1,3 +1,4 @@
+// @ts-nocheck
 class AudioMetaTags {
   constructor(metadata) {
     this.tagAlbum = null

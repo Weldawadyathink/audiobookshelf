@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*!
  * is.js 0.9.0
  * Author: Aras Atasaygin

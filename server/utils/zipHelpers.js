@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const { Response } = require('express')
 const Logger = require('../Logger')

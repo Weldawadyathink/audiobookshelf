@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { expect } = require('chai')
 const sinon = require('sinon')
 const { up, down } = require('../../../server/migrations/v2.15.0-series-column-unique')

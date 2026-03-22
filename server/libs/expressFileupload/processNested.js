@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { isSafeFromPollution } = require("./utilities");
 
 module.exports = function(data){

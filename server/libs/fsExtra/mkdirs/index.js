@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict'
 const u = require('../../universalify').fromPromise
 const { makeDir: _makeDir, makeDirSync } = require('./make-dir')

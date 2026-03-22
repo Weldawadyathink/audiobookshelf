@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { setMaxListeners } = require('events')
 const Logger = require('../Logger')
 const BookFinder = require('../finders/BookFinder')

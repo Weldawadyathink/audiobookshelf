@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*jshint node:true*/
 'use strict';
 

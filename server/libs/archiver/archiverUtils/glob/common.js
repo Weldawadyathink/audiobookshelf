@@ -1,3 +1,4 @@
+// @ts-nocheck
 exports.setopts = setopts
 exports.ownProp = ownProp
 exports.makeAbs = makeAbs

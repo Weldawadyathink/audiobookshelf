@@ -1,3 +1,4 @@
+// @ts-nocheck
 const ffprobe = require('../libs/nodeFfprobe')
 const MediaProbeData = require('../scanner/MediaProbeData')
 

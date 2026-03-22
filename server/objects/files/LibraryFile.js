@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const { getFileTimestampsWithIno, filePathToPOSIX } = require('../../utils/fileUtils')
 const globals = require('../../utils/globals')

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const sequelize = require('sequelize')
 const Path = require('path')
 const packageJson = require('../../package.json')

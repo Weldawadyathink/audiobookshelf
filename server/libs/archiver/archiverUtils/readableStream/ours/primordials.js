@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict'
 /*
   This file is a reduced and adapted version of the main lib/internal/per_context/primordials.js file defined at

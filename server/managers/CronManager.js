@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Sequelize = require('sequelize')
 const cron = require('../libs/nodeCron')
 const Logger = require('../Logger')

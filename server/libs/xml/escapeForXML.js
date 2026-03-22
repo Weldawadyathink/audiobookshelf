@@ -1,3 +1,4 @@
+// @ts-nocheck
 var XML_CHARACTER_MAP = {
   '&': '&amp;',
   '"': '&quot;',

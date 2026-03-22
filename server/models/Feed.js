@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const { DataTypes, Model } = require('sequelize')
 const Logger = require('../Logger')

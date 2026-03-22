@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Returns a wrapper function that returns a wrapped callback
 // The wrapper function should do some stuff, and return a
 // presumably different callback function.

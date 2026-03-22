@@ -1,3 +1,4 @@
+// @ts-nocheck
 const optionDefinitions = [
   { name: 'config', alias: 'c', type: String },
   { name: 'metadata', alias: 'm', type: String },

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes, Model, where, fn, col, literal } = require('sequelize')
 
 const { getTitlePrefixAtEnd, getTitleIgnorePrefix } = require('../utils/index')

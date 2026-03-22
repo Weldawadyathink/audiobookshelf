@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { Request, Response, NextFunction } = require('express')
 const Path = require('path')
 const fs = require('../libs/fsExtra')

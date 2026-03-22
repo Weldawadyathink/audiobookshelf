@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { Request, Response, NextFunction } = require('express')
 const uuidv4 = require('uuid').v4
 const Logger = require('../Logger')

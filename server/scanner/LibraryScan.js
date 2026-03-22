@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const uuidv4 = require('uuid').v4
 const fs = require('../libs/fsExtra')

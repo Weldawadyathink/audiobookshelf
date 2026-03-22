@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict';
 
 const convertExpression = require('./convert-expression');

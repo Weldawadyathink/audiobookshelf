@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes, Model } = require('sequelize')
 const oldDevice = require('../objects/DeviceInfo')
 

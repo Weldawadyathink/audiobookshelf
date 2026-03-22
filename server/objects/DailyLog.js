@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const date = require('../libs/dateAndTime')
 const fs = require('../libs/fsExtra')

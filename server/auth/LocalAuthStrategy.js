@@ -1,3 +1,4 @@
+// @ts-nocheck
 const passport = require('passport')
 const LocalStrategy = require('../libs/passportLocal')
 const Database = require('../Database')

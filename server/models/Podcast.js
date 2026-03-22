@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes, Model } = require('sequelize')
 const { getTitlePrefixAtEnd, getTitleIgnorePrefix } = require('../utils')
 const Logger = require('../Logger')

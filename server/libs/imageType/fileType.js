@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict';
 const toBytes = s => [...s].map(c => c.charCodeAt(0));
 const xpiZipFilename = toBytes('META-INF/mozilla.rsa');

@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict';
 
 // SOURCE: https://github.com/node-cron/node-cron

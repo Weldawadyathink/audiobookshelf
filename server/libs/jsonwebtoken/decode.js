@@ -1,3 +1,4 @@
+// @ts-nocheck
 var jws = require('../jws');
 
 module.exports = function (jwt, options) {

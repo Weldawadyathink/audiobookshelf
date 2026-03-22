@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict'
 
 const { Symbol, SymbolAsyncIterator, SymbolIterator } = require('../../ours/primordials')

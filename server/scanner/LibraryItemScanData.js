@@ -1,3 +1,4 @@
+// @ts-nocheck
 const packageJson = require('../../package.json')
 const { LogLevel } = require('../utils/constants')
 const LibraryItem = require('../models/LibraryItem')

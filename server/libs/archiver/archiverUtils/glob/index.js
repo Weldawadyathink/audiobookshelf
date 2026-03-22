@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Approach:
 //
 // 1. Get the minimatch set

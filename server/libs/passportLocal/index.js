@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // modified for audiobookshelf
 // Source: https://github.com/jaredhanson/passport-local

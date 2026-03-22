@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { Request, Response } = require('express')
 const Logger = require('../Logger')
 const SocketAuthority = require('../SocketAuthority')

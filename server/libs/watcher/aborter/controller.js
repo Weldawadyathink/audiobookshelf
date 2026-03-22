@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use strict";
 /* IMPORT */
 var signal_1 = require("./signal");

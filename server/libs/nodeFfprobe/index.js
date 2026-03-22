@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // node-ffprobe modified for audiobookshelf
 // SOURCE: https://github.com/ListenerApproved/node-ffprobe

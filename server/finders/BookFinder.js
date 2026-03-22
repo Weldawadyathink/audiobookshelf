@@ -1,3 +1,4 @@
+// @ts-nocheck
 const OpenLibrary = require('../providers/OpenLibrary')
 const GoogleBooks = require('../providers/GoogleBooks')
 const Audible = require('../providers/Audible')

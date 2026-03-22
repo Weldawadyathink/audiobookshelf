@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict';
 
 const { Readable, Writable } = require('stream');

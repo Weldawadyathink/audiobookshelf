@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict'
 /* eslint-disable unicorn/template-indent */
 // templates for migration file creation

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const axios = require('axios')
 const ssrfFilter = require('ssrf-req-filter')
 const Logger = require('../Logger')

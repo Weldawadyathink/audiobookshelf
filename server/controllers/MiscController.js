@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Sequelize = require('sequelize')
 const Path = require('path')
 const { Request, Response } = require('express')

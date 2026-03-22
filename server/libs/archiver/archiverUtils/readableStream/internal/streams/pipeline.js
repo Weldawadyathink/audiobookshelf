@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict'

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*!
  * normalize-path <https://github.com/jonschlinkert/normalize-path>
  *

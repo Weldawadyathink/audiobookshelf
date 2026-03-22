@@ -5,12 +5,15 @@
   "description": "Self-hosted audiobook and podcast server",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch server index.js -- --dev",
-    "start": "node index.js",
-    "start-dev": "node index.js --prod-with-dev-env",
+    "dev": "tsx watch index.js -- --dev",
+    "start": "tsx index.js",
+    "start-dev": "tsx index.js --prod-with-dev-env",
     "client": "cd client && npm ci && npm run generate",
-    "prod": "npm run client && npm ci && node index.js",
-    "build-win": "npm run client && pkg -t node20-win-x64 -o ./dist/win/audiobookshelf -C GZip .",
+    "prod": "npm run client && npm ci && tsx index.js",
+    "typecheck": "tsc --noEmit",
+    "build:compile": "tsc -p tsconfig.build.json",
+    "build:copy": "node -e \"const fs=require('fs'); fs.cpSync('server/libs','dist/server/libs',{recursive:true}); fs.cpSync('server/migrations','dist/server/migrations',{recursive:true})\"",
+    "build-win": "npm run client && npm run build:compile && npm run build:copy && pkg -t node20-win-x64 -o ./dist/win/audiobookshelf -C GZip .",
     "build-win-no-compress": "npm run client && pkg -t node20-win-x64 -o ./dist/win/audiobookshelf .",
     "build-linux": "build/linuxpackager",
     "docker": "docker buildx build --platform linux/amd64,linux/arm64 --push .  -t advplyr/audiobookshelf",
@@ -25,15 +28,11 @@
     "assets": [
       "client/dist/**/*",
       "node_modules/sqlite3/lib/binding/**/*.node",
-      "server/migrations/*.js"
+      "dist/server/migrations/*.js"
     ],
     "scripts": [
-      "index.js",
-      "server/**/*.js"
+      "dist/server/**/*.js"
     ]
-  },
-  "mocha": {
-    "recursive": true
   },
   "author": "advplyr",
   "license": "GPL-3.0",
@@ -60,10 +59,23 @@
     "xml2js": "^0.5.0"
   },
   "devDependencies": {
+    "@types/chai": "^5.2.3",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express": "^5.0.6",
+    "@types/express-session": "^1.18.2",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^25.5.0",
+    "@types/nodemailer": "^7.0.11",
+    "@types/passport": "^1.0.17",
+    "@types/passport-jwt": "^4.0.1",
+    "@types/sinon": "^21.0.0",
+    "@types/xml2js": "^0.4.14",
     "chai": "^4.3.10",
     "mocha": "^10.2.0",
     "nodemon": "^2.0.20",
     "nyc": "^15.1.0",
-    "sinon": "^17.0.1"
+    "sinon": "^17.0.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }

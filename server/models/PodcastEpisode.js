@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes, Model } = require('sequelize')
 const libraryItemsPodcastFilters = require('../utils/queries/libraryItemsPodcastFilters')
 /**

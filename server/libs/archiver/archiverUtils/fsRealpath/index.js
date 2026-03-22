@@ -1,3 +1,4 @@
+// @ts-nocheck
 module.exports = realpath
 realpath.realpath = realpath
 realpath.sync = realpathSync

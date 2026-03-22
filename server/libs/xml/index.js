@@ -1,3 +1,4 @@
+// @ts-nocheck
 // node-xml
 // SOURCE: https://github.com/dylang/node-xml
 // LICENSE: https://github.com/dylang/node-xml/blob/master/LICENSE

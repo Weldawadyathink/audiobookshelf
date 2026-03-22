@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use strict";
 /* LANG */
 Object.defineProperty(exports, "__esModule", { value: true });

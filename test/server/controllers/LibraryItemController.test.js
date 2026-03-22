@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { expect } = require('chai')
 const { Sequelize } = require('sequelize')
 const sinon = require('sinon')

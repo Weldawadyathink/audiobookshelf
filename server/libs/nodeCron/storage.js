@@ -1,3 +1,4 @@
+// @ts-nocheck
 module.exports = (() => {
     if(!global.scheduledTasks){
         global.scheduledTasks = new Map();

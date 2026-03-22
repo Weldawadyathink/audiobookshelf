@@ -1,3 +1,4 @@
+// @ts-nocheck
 const sqlite3 = require('sqlite3')
 const Path = require('path')
 const Logger = require('../Logger')

@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use strict";
 /* IMPORT */
 var __importDefault = (this && this.__importDefault) || function (mod) {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { rateLimit, RateLimitRequestHandler } = require('express-rate-limit')
 const Logger = require('../Logger')
 const requestIp = require('../libs/requestIp')

@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use strict";
 /* CONSTS */
 Object.defineProperty(exports, "__esModule", { value: true });

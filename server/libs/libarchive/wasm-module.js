@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Modified from https://github.com/nika-begiashvili/libarchivejs
  */

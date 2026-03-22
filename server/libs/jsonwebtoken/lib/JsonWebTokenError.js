@@ -1,3 +1,4 @@
+// @ts-nocheck
 var JsonWebTokenError = function (message, error) {
   Error.call(this, message);
   if(Error.captureStackTrace) {

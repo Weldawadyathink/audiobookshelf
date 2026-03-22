@@ -1,3 +1,4 @@
+// @ts-nocheck
 const h = require('htmlparser2')
 const Logger = require('../../Logger')
 

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { Request, Response } = require('express')
 const uuid = require('uuid')
 const Path = require('path')

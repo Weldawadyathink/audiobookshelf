@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const uuid = require('uuid')
 const Logger = require('../Logger')

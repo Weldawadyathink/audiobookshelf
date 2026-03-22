@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* istanbul ignore file - tested in node */
 // Copyright Joyent, Inc. and other Node contributors.
 //

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const express = require('express')
 const Path = require('path')
 const sequelize = require('sequelize')

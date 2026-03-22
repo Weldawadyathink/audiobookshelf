@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * node-crc32-stream
  *

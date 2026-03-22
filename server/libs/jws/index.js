@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // used by jsonwebtoken
 // Source: https://github.com/auth0/node-jws

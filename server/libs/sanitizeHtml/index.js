@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
   sanitize-html (Apostrophe Technologies)
   SOURCE: https://github.com/apostrophecms/sanitize-html

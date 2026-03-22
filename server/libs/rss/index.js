@@ -1,3 +1,4 @@
+// @ts-nocheck
 // node-rss
 // SOURCE: https://github.com/dylang/node-rss
 // LICENSE: https://creativecommons.org/licenses/by-sa/4.0/

@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use strict";
 /* WATCHER LOCKS RESOLVER */
 Object.defineProperty(exports, "__esModule", { value: true });

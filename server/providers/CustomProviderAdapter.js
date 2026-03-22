@@ -1,3 +1,4 @@
+// @ts-nocheck
 const axios = require('axios').default
 const Database = require('../Database')
 const Logger = require('../Logger')

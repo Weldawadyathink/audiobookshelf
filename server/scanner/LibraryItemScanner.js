@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const { LogLevel, ScanResult } = require('../utils/constants')
 

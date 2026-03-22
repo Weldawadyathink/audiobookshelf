@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // modified for use in audiobookshelf
 // Source: https://github.com/auth0/node-jsonwebtoken

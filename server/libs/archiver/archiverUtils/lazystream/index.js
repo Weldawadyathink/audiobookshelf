@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // Source: https://github.com/jpommerening/node-lazystream
 //

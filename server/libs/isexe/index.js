@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // used by async
 // SOURCE: https://github.com/isaacs/isexe

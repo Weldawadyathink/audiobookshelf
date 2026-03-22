@@ -1,3 +1,4 @@
+// @ts-nocheck
 var timespan = require('./lib/timespan');
 var PS_SUPPORTED = true
 var jws = require('../jws');

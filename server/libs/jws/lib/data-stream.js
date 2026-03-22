@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*global module, process*/
 var Buffer = require('safe-buffer').Buffer;
 var Stream = require('stream');

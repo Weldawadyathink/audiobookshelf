@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { performance, createHistogram } = require('perf_hooks')
 const util = require('util')
 const Logger = require('../Logger')

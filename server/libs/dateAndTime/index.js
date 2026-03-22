@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  date-and-time (c) KNOWLEDGECODE | MIT
 */

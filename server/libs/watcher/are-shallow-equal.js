@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use strict";
 /* IMPORT */
 var isPrimitive = require("./is-primitive");

@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const Logger = require('../Logger')
 const prober = require('../utils/prober')

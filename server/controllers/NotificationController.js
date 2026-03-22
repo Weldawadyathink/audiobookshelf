@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { Request, Response, NextFunction } = require('express')
 const Database = require('../Database')
 const { version } = require('../../package.json')

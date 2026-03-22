@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { DataTypes, QueryInterface } = require('sequelize')
 const Path = require('path')
 const uuidv4 = require('uuid').v4

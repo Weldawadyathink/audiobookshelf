@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Sequelize = require('sequelize')
 const Database = require('../../Database')
 

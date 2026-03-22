@@ -1,33 +1,27 @@
-const axios = require('axios')
-const Logger = require('../Logger')
+import axios from 'axios'
+import Logger from '../Logger'
 
 class AudiobookCovers {
-  #responseTimeout = 10000
-
-  constructor() {}
+  readonly #responseTimeout = 10000
 
   /**
-   *
-   * @param {string} search
-   * @param {number} [timeout]
-   * @returns {Promise<{cover: string}[]>}
+   * @param search Search string
+   * @param timeout Request timeout in ms
    */
-  async search(search, timeout = this.#responseTimeout) {
+  async search(search: string, timeout: number = this.#responseTimeout): Promise<{ cover: string }[]> {
     if (!timeout || isNaN(timeout)) timeout = this.#responseTimeout
 
     const url = `https://api.audiobookcovers.com/cover/bytext/`
     const params = new URLSearchParams([['q', search]])
     const items = await axios
-      .get(url, {
-        params,
-        timeout
-      })
+      .get<{ versions: { png: { original: string } } }[]>(url, { params, timeout })
       .then((res) => res?.data || [])
-      .catch((error) => {
+      .catch((error: Error) => {
         Logger.error('[AudiobookCovers] Cover search error', error.message)
         return []
       })
     return items.map((item) => ({ cover: item.versions.png.original }))
   }
 }
-module.exports = AudiobookCovers
+
+export = AudiobookCovers

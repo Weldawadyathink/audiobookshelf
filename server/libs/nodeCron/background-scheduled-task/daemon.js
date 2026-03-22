@@ -1,3 +1,4 @@
+// @ts-nocheck
 const ScheduledTask = require('../scheduled-task');
 
 let scheduledTask;

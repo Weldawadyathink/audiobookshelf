@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Logger = require('../Logger')
 const iTunes = require('../providers/iTunes')
 

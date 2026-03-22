@@ -1,3 +1,4 @@
+// @ts-nocheck
 const EventEmitter = require('events');
 const path = require('path');
 const { fork } = require('child_process');

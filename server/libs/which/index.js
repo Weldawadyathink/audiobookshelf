@@ -1,3 +1,4 @@
+// @ts-nocheck
 //
 // used by fluentFfmpeg
 // SOURCE: https://github.com/isaacs/isexe

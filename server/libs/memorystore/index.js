@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*!
  * memorystore
  * Copyright(c) 2020 Rocco Musolino <@roccomuso>

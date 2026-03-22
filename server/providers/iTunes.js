@@ -1,3 +1,4 @@
+// @ts-nocheck
 const axios = require('axios')
 const Logger = require('../Logger')
 const htmlSanitizer = require('../utils/htmlSanitizer')

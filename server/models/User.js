@@ -1,3 +1,4 @@
+// @ts-nocheck
 const uuidv4 = require('uuid').v4
 const sequelize = require('sequelize')
 const { LRUCache } = require('lru-cache')

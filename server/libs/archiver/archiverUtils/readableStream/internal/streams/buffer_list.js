@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict'
 
 const { StringPrototypeSlice, SymbolIterator, TypedArrayPrototypeSet, Uint8Array } = require('../../ours/primordials')

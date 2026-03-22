@@ -1,3 +1,4 @@
+// @ts-nocheck
 const { Umzug, SequelizeStorage } = require('../libs/umzug')
 const { Sequelize, DataTypes } = require('sequelize')
 const semver = require('semver')
