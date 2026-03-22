@@ -1,3 +1,4 @@
+// @ts-nocheck
 const Path = require('path')
 const fsExtra = require('../libs/fsExtra')
 const { readTextFile } = require('../utils/fileUtils')
