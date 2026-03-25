@@ -1,0 +1,218 @@
+import { AudioMimeType } from '../../utils/constants'
+import AudioMetaTags from '../metadata/AudioMetaTags'
+import FileMetadata from '../metadata/FileMetadata'
+
+interface ChapterObject {
+  id: number
+  start: number
+  end: number
+  title: string
+}
+
+class AudioFile {
+  index: number | null
+  ino: string | null
+  metadata: FileMetadata | null
+  addedAt: number | null
+  updatedAt: number | null
+  trackNumFromMeta: number | null
+  discNumFromMeta: number | null
+  trackNumFromFilename: number | null
+  discNumFromFilename: number | null
+  format: string | null
+  duration: number | null
+  bitRate: number | null
+  language: string | null
+  codec: string | null
+  timeBase: string | null
+  channels: number | null
+  channelLayout: string | null
+  chapters: ChapterObject[]
+  embeddedCoverArt: string | null
+  metaTags: AudioMetaTags | null
+  manuallyVerified: boolean
+  exclude: boolean
+  error: string | null
+
+  constructor(data?: Record<string, any> | null) {
+    this.index = null
+    this.ino = null
+    this.metadata = null
+    this.addedAt = null
+    this.updatedAt = null
+    this.trackNumFromMeta = null
+    this.discNumFromMeta = null
+    this.trackNumFromFilename = null
+    this.discNumFromFilename = null
+    this.format = null
+    this.duration = null
+    this.bitRate = null
+    this.language = null
+    this.codec = null
+    this.timeBase = null
+    this.channels = null
+    this.channelLayout = null
+    this.chapters = []
+    this.embeddedCoverArt = null
+    this.metaTags = null
+    this.manuallyVerified = false
+    this.exclude = false
+    this.error = null
+
+    if (data) {
+      this.construct(data)
+    }
+  }
+
+  toJSON() {
+    return {
+      index: this.index,
+      ino: this.ino,
+      metadata: this.metadata.toJSON(),
+      addedAt: this.addedAt,
+      updatedAt: this.updatedAt,
+      trackNumFromMeta: this.trackNumFromMeta,
+      discNumFromMeta: this.discNumFromMeta,
+      trackNumFromFilename: this.trackNumFromFilename,
+      discNumFromFilename: this.discNumFromFilename,
+      manuallyVerified: !!this.manuallyVerified,
+      exclude: !!this.exclude,
+      error: this.error || null,
+      format: this.format,
+      duration: this.duration,
+      bitRate: this.bitRate,
+      language: this.language,
+      codec: this.codec,
+      timeBase: this.timeBase,
+      channels: this.channels,
+      channelLayout: this.channelLayout,
+      chapters: this.chapters,
+      embeddedCoverArt: this.embeddedCoverArt,
+      metaTags: this.metaTags?.toJSON() || {},
+      mimeType: this.mimeType
+    }
+  }
+
+  construct(data: Record<string, any>): void {
+    this.index = data.index
+    this.ino = data.ino
+    this.metadata = new FileMetadata(data.metadata || {})
+    this.addedAt = data.addedAt
+    this.updatedAt = data.updatedAt
+    this.manuallyVerified = !!data.manuallyVerified
+    this.exclude = !!data.exclude
+    this.error = data.error || null
+
+    this.trackNumFromMeta = data.trackNumFromMeta
+    this.discNumFromMeta = data.discNumFromMeta
+    this.trackNumFromFilename = data.trackNumFromFilename
+
+    if (data.cdNumFromFilename !== undefined) this.discNumFromFilename = data.cdNumFromFilename // TEMP:Support old var name
+    else this.discNumFromFilename = data.discNumFromFilename
+
+    this.format = data.format
+    this.duration = data.duration
+    this.bitRate = data.bitRate
+    this.language = data.language
+    this.codec = data.codec || null
+    this.timeBase = data.timeBase
+    this.channels = data.channels
+    this.channelLayout = data.channelLayout
+    this.chapters = data.chapters
+    this.embeddedCoverArt = data.embeddedCoverArt || null
+
+    this.metaTags = new AudioMetaTags(data.metaTags || {})
+  }
+
+  get mimeType(): string {
+    const format = this.metadata.format.toUpperCase()
+    if ((AudioMimeType as Record<string, string>)[format]) {
+      return (AudioMimeType as Record<string, string>)[format]
+    } else {
+      return AudioMimeType.MP3
+    }
+  }
+
+  setDataFromProbe(libraryFile: any, probeData: any): void {
+    this.ino = libraryFile.ino || null
+
+    if (libraryFile.metadata instanceof FileMetadata) {
+      this.metadata = libraryFile.metadata.clone()
+    } else {
+      this.metadata = new FileMetadata(libraryFile.metadata)
+    }
+
+    this.addedAt = Date.now()
+    this.updatedAt = Date.now()
+
+    this.format = probeData.format
+    this.duration = probeData.duration
+    this.bitRate = probeData.bitRate || null
+    this.language = probeData.language
+    this.codec = probeData.codec || null
+    this.timeBase = probeData.timeBase
+    this.channels = probeData.channels
+    this.channelLayout = probeData.channelLayout
+    this.chapters = probeData.chapters || []
+    this.metaTags = probeData.audioMetaTags
+    this.embeddedCoverArt = probeData.embeddedCoverArt
+  }
+
+  syncChapters(updatedChapters: ChapterObject[]): boolean {
+    if (this.chapters.length !== updatedChapters.length) {
+      this.chapters = updatedChapters.map(ch => ({ ...ch }))
+      return true
+    } else if (updatedChapters.length === 0) {
+      if (this.chapters.length > 0) {
+        this.chapters = []
+        return true
+      }
+      return false
+    }
+
+    let hasUpdates = false
+    for (let i = 0; i < updatedChapters.length; i++) {
+      if (JSON.stringify(updatedChapters[i]) !== JSON.stringify(this.chapters[i])) {
+        hasUpdates = true
+      }
+    }
+    if (hasUpdates) {
+      this.chapters = updatedChapters.map(ch => ({ ...ch }))
+    }
+    return hasUpdates
+  }
+
+  clone(): AudioFile {
+    return new AudioFile(this.toJSON())
+  }
+
+  updateFromScan(scannedAudioFile: AudioFile): boolean {
+    let hasUpdated = false
+
+    const newjson = scannedAudioFile.toJSON()
+    const ignoreKeys = ['manuallyVerified', 'ctimeMs', 'addedAt', 'updatedAt']
+
+    for (const key in newjson) {
+      if (key === 'metadata') {
+        if (this.metadata.update(newjson[key])) {
+          hasUpdated = true
+        }
+      } else if (key === 'metaTags') {
+        if (!this.metaTags || !this.metaTags.isEqual(scannedAudioFile.metaTags)) {
+          this.metaTags = scannedAudioFile.metaTags.clone()
+          hasUpdated = true
+        }
+      } else if (key === 'chapters') {
+        if (this.syncChapters(newjson.chapters || [])) {
+          hasUpdated = true
+        }
+      } else if (!ignoreKeys.includes(key) && (this as Record<string, unknown>)[key] !== (newjson as Record<string, unknown>)[key]) {
+        (this as Record<string, unknown>)[key] = (newjson as Record<string, unknown>)[key]
+        hasUpdated = true
+      }
+    }
+    return hasUpdated
+  }
+}
+
+export = AudioFile

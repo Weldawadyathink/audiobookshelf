@@ -1,0 +1,141 @@
+// @ts-nocheck
+import axios from 'axios'
+import Throttle from 'p-throttle'
+import Logger from '../Logger'
+import { levenshteinDistance, isValidASIN } from '../utils/index'
+
+class Audnexus {
+  static _instance: Audnexus | null = null
+  baseUrl: string
+  limiter: any
+
+  constructor() {
+    if (Audnexus._instance) {
+      return Audnexus._instance
+    }
+
+    this.baseUrl = 'https://api.audnex.us'
+
+    this.limiter = Throttle({
+      limit: 1,
+      strict: true,
+      interval: 150
+    })
+
+    Audnexus._instance = this
+  }
+
+  authorASINsRequest(name: string, region: string): Promise<any[]> {
+    const searchParams = new URLSearchParams()
+    searchParams.set('name', name)
+
+    if (region) searchParams.set('region', region)
+
+    const authorRequestUrl = `${this.baseUrl}/authors?${searchParams.toString()}`
+    Logger.info(`[Audnexus] Searching for author "${authorRequestUrl}"`)
+
+    return this._processRequest(this.limiter(() => axios.get(authorRequestUrl)))
+      .then((res) => res.data || [])
+      .catch((error) => {
+        Logger.error(`[Audnexus] Author ASIN request failed for ${name}`, error.message)
+        return []
+      })
+  }
+
+  authorRequest(asin: string, region: string): Promise<any> | null {
+    if (!isValidASIN(asin?.toUpperCase?.())) {
+      Logger.error(`[Audnexus] Invalid ASIN ${asin}`)
+      return null
+    }
+
+    asin = encodeURIComponent(asin.toUpperCase())
+
+    const authorRequestUrl = new URL(`${this.baseUrl}/authors/${asin}`)
+    if (region) authorRequestUrl.searchParams.set('region', region)
+
+    Logger.info(`[Audnexus] Searching for author "${authorRequestUrl}"`)
+
+    return this._processRequest(this.limiter(() => axios.get(authorRequestUrl.toString())))
+      .then((res) => res.data)
+      .catch((error) => {
+        Logger.error(`[Audnexus] Author request failed for ${asin}`, error.message)
+        return null
+      })
+  }
+
+  async findAuthorByASIN(asin: string, region: string): Promise<any> {
+    const author = await this.authorRequest(asin, region)
+
+    return author
+      ? {
+          asin: author.asin,
+          description: author.description,
+          image: author.image || null,
+          name: author.name
+        }
+      : null
+  }
+
+  async findAuthorByName(name: string, region: string, maxLevenshtein = 3): Promise<any> {
+    Logger.debug(`[Audnexus] Looking up author by name ${name}`)
+    const authorAsinObjs = await this.authorASINsRequest(name, region)
+
+    let closestMatch: any = null
+    authorAsinObjs.forEach((authorAsinObj) => {
+      authorAsinObj.levenshteinDistance = levenshteinDistance(authorAsinObj.name, name)
+      if (!closestMatch || closestMatch.levenshteinDistance > authorAsinObj.levenshteinDistance) {
+        closestMatch = authorAsinObj
+      }
+    })
+
+    if (!closestMatch || closestMatch.levenshteinDistance > maxLevenshtein) {
+      return null
+    }
+
+    const author = await this.authorRequest(closestMatch.asin, region)
+    if (!author) {
+      return null
+    }
+
+    return {
+      asin: author.asin,
+      description: author.description,
+      image: author.image || null,
+      name: author.name
+    }
+  }
+
+  getChaptersByASIN(asin: string, region: string): Promise<any> {
+    Logger.debug(`[Audnexus] Get chapters for ASIN ${asin}/${region}`)
+
+    asin = encodeURIComponent(asin.toUpperCase())
+    const chaptersRequestUrl = new URL(`${this.baseUrl}/books/${asin}/chapters`)
+    if (region) chaptersRequestUrl.searchParams.set('region', region)
+
+    return this._processRequest(this.limiter(() => axios.get(chaptersRequestUrl.toString())))
+      .then((res) => res.data)
+      .catch((error) => {
+        Logger.error(`[Audnexus] Chapter ASIN request failed for ${asin}/${region}`, error.message)
+        return null
+      })
+  }
+
+  async _processRequest(request: () => Promise<any>): Promise<any> {
+    try {
+      return await request()
+    } catch (error) {
+      if (error.response?.status === 429) {
+        const retryAfter = parseInt(error.response.headers?.['retry-after'], 10) || 5
+
+        Logger.warn(`[Audnexus] Rate limit exceeded. Retrying in ${retryAfter} seconds.`)
+        await new Promise((resolve) => setTimeout(resolve, retryAfter * 1000))
+
+        return this._processRequest(request)
+      }
+
+      throw error
+    }
+  }
+}
+
+export = Audnexus
